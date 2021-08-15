@@ -72,7 +72,6 @@ const addCards = (json, callback) => {
 const initCarousel = () => {
   const track = document.getElementById("main");
   const slides = Array.from(track.children);
-  console.log(track.children);
   const prevButton = document.getElementById("left");
   const nextButton = document.getElementById("right");
   const dotsNav = document.querySelector(".carousel__nav");
@@ -91,10 +90,39 @@ const initCarousel = () => {
   // Move slides right
   nextButton.addEventListener("click", (e) => {
     const currentSlide = track.querySelector(".current-slide");
-    console.log(currentSlide.nextSibling);
-    const nextSlide = currentSlide.nextSibling;
+    const nextSlide = currentSlide.nextElementSibling;
+    moveToSlide(track, currentSlide, nextSlide);
   });
+
   // Move slides left
+  prevButton.addEventListener("click", (e) => {
+    const currentSlide = track.querySelector(".current-slide");
+    const prevSlide = currentSlide.previousElementSibling;
+    moveToSlide(track, currentSlide, prevSlide);
+  });
+
+  // map the arrow keys to also move the slides
+  document.body.addEventListener("keydown", function (event) {
+    const key = event.key;
+    const currentSlide = track.querySelector(".current-slide");
+    const prevSlide = currentSlide.previousElementSibling;
+    const nextSlide = currentSlide.nextElementSibling;
+    switch (key) {
+      case "ArrowLeft":
+        moveToSlide(track, currentSlide, prevSlide);
+        break;
+      case "ArrowRight":
+        moveToSlide(track, currentSlide, nextSlide);
+        break;
+    }
+  });
 
   // When I click the nav indicator then move to that slide
+};
+
+const moveToSlide = (track, currentSlide, targetSlide) => {
+  const amountToMove = targetSlide.style.left;
+  track.style.transform = `translateX(-${amountToMove})`;
+  currentSlide.classList.remove("current-slide");
+  targetSlide.classList.add("current-slide");
 };
