@@ -48,9 +48,9 @@ const createCard = (question, answer, tabindex) => {
   div2.appendChild(back);
   div1.appendChild(div2);
   card.appendChild(div1);
-  card.style.backgroundColor =
-    "#" + Math.floor(Math.random() * 16777215).toString(16);
-  let main = document.getElementById("main");
+  // card.style.backgroundColor =
+  //   "#" + Math.floor(Math.random() * 16777215).toString(16);
+  // let main = document.getElementById("main");
   main.appendChild(card);
 };
 
