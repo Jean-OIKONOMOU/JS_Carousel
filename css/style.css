@@ -58,6 +58,7 @@
   height: 12px;
   background: hsla(0, 0%, 0%, 0.3);
   margin: 5px;
+  transition: background 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .carousel__indicator.current-slide {
