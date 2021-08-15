@@ -41,6 +41,7 @@ button,
 select {
   /* 1 */
   text-transform: none;
+  cursor: pointer;
 }
 
 /**
