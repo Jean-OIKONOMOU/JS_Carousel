@@ -1,8 +1,7 @@
 /* check if the DOM is fully loaded and ready to be fiddled with*/
 document.addEventListener("readystatechange", (event) => {
   if (event.target.readyState === "complete") {
-    // TODO: read aloud the way to navigate in the app.
-    initApp();
+    initApp(initCarousel);
   }
 });
 
@@ -10,8 +9,7 @@ const initApp = () => {
   fetch("./content.json")
     .then((response) => response.json())
     .then((json) => {
-      console.log(json);
-      addCard(json);
+      addCards(json, initCarousel);
     });
 };
 
@@ -54,8 +52,49 @@ const createCard = (question, answer, tabindex) => {
   main.appendChild(card);
 };
 
-const addCard = (json) => {
+const createDot = () => {
+  const dotList = document.querySelector(".carousel__nav");
+  const dot = document.createElement("button");
+  dot.classList.add("carousel__indicator");
+  dotList.appendChild(dot);
+};
+
+const addCards = (json, callback) => {
   for (let index = 0; index < Object.keys(json).length; index++) {
     createCard(json[index].name, json[index].age, index);
+    createDot();
   }
+  callback();
+};
+
+// CAROUSEL LOGIC
+
+const initCarousel = () => {
+  const track = document.getElementById("main");
+  const slides = Array.from(track.children);
+  console.log(track.children);
+  const prevButton = document.getElementById("left");
+  const nextButton = document.getElementById("right");
+  const dotsNav = document.querySelector(".carousel__nav");
+  const dots = Array.from(dotsNav.children);
+  // init first dot
+  dots[0].classList.add("current-slide");
+  slides[0].classList.add("current-slide");
+
+  const slideWidth = slides[0].getBoundingClientRect().width;
+
+  // arrange slides next to one another
+  for (let index = 0; index < slides.length; index++) {
+    slides[index].style.left = `${slideWidth * index}px`;
+  }
+
+  // Move slides right
+  nextButton.addEventListener("click", (e) => {
+    const currentSlide = track.querySelector(".current-slide");
+    console.log(currentSlide.nextSibling);
+    const nextSlide = currentSlide.nextSibling;
+  });
+  // Move slides left
+
+  // When I click the nav indicator then move to that slide
 };

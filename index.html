@@ -7,12 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/normalize.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>">
     <title>Document</title>
 </head>
 
 <body>
     <div class="carousel">
-        <button class="carousel__button carousel__button--left">
+        <button id="left" class="carousel__button carousel__button--left">
             <img src="img/left.svg" alt="">
         </button>
 
@@ -21,17 +23,15 @@
             </ul>
         </div>
 
-        <button class="carousel__button carousel__button--right">
+        <button id="right" class="carousel__button carousel__button--right">
             <img src="img/right.svg" alt="">
         </button>
 
         <div class="carousel__nav">
-            <button class="carousel__indicator current-slide"></button>
-            <button class="carousel__indicator"></button>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
